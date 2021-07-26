@@ -9,14 +9,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener {
 	
 	static final int SCREEN_WIDTH = 600;
@@ -35,7 +32,6 @@ public class GamePanel extends JPanel implements ActionListener {
 	Timer timer;
 	Random random;
 	
-	private Menu menu;
 	
 	/*
 	private enum STATE{
@@ -47,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	private STATE state = STATE.MENU;
 	*/
 	
-    public void GamePanel(){
+    public GamePanel(){
 		random = new Random();
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
@@ -65,10 +61,6 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(running == false) {
-			menu = new Menu();
-			menu.draw(g);
-		}
 		draw(g);
 	}
 	
