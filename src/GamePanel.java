@@ -9,9 +9,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 
 public class GamePanel extends JPanel implements ActionListener {
 	
@@ -31,7 +35,19 @@ public class GamePanel extends JPanel implements ActionListener {
 	Timer timer;
 	Random random;
 	
-	GamePanel(){
+	private Menu menu;
+	
+	/*
+	private enum STATE{
+		MENU,
+		GAME
+	};
+	
+	
+	private STATE state = STATE.MENU;
+	*/
+	
+    public void GamePanel(){
 		random = new Random();
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
@@ -49,6 +65,10 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if(running == false) {
+			menu = new Menu();
+			menu.draw(g);
+		}
 		draw(g);
 	}
 	
@@ -177,22 +197,22 @@ public class GamePanel extends JPanel implements ActionListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			switch(e.getKeyCode()) {
-			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_A:
 				if(direction != 'R') {
 					direction = 'L';
 				}
 				break;
-			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_D:
 				if(direction != 'L') {
 					direction = 'R';
 				}
 				break;
-			case KeyEvent.VK_UP:
+			case KeyEvent.VK_W:
 				if(direction != 'D') {
 					direction = 'U';
 				}
 				break;
-			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_S:
 				if(direction != 'U') {
 					direction = 'D';
 				}
@@ -201,3 +221,4 @@ public class GamePanel extends JPanel implements ActionListener {
 		}
 	}
 }
+
